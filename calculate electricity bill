@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    float units, bill = 0.0;
+    float rate1 = 3.50;  // Rate for the first 100 units
+    float rate2 = 4.00;  // Rate for the next 100 units (101 to 200)
+    float rate3 = 5.00;  // Rate for units above 200
+    float fixedCharge = 50.0;  // Fixed charge (could be a service fee, etc.)
+    float taxRate = 0.05;  // Tax rate (5% tax)
+    float tax;
+    
+    // Ask the user for the number of units consumed
+    printf("Enter the number of units consumed: ");
+    scanf("%f", &units);
+    
+    // Calculate the bill based on units consumed
+    if (units <= 100) {
+        bill = units * rate1;
+    } else if (units <= 200) {
+        bill = (100 * rate1) + ((units - 100) * rate2);
+    } else {
+        bill = (100 * rate1) + (100 * rate2) + ((units - 200) * rate3);
+    }
+    
+    // Add fixed charge
+    bill += fixedCharge;
+    
+    // Calculate tax
+    tax = bill * taxRate;
+    
+    // Add tax to the total bill
+    bill += tax;
+    
+    // Output the total bill
+    printf("Total electricity bill: %.2f\n", bill);
+    
+    return 0; // Exit successfully
+}
